@@ -4,7 +4,8 @@
   --winterRed: #43242B;
   --winterYellow: #49443C;
   --dragonBlue: #658594;
-  --sumiInk1: #1F1F28;
+  --sumiInk1: hsl(240, 13%, 14%);
+  --sumiInk1-9: hsl(240, 13%, 14%, .9);
 
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -45,13 +46,48 @@ a {
   margin: 1.25rem 0;
 }
 
-.introduction {
-  background-color: var(--sumiInk1);
-  border: 6px solid var(--dragonBlue);
-  border-radius: 1.175rem;
+.heading--fullscreen,
+.navigation--fullscreen {
+  background-color: var(--sumiInk1-9);
+  display: inline-block;
+  margin: 0;
+  padding: 1rem;
+  position: fixed;
+  top: 0;
+}
+
+heading {
+  font-size: 3.125rem;
+}
+
+.heading--fullscreen {
+  left: 0;
+}
+
+.navigation--fullscreen {
+  right: 0;
+}
+
+.introduction,
+.introduction--fullscreen {
   margin-bottom: 1.75rem;
   max-width: 66vw;
   padding: 1.25rem;
+}
+
+.introduction {
+  background-color: var(--sumiInk1);
+  border: .375rem solid var(--dragonBlue);
+  border-radius: 1.175rem;
+}
+
+.introduction--fullscreen {
+  background-color: var(--sumiInk1-9);
+  border: .18rem solid var(--dragonBlue);
+  border-radius: 0;
+  left: 0;
+  position: fixed;
+  top: 4.5rem;
 }
 
 h2 {
