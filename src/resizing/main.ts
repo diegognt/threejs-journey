@@ -8,12 +8,15 @@ import {
   PerspectiveCamera,
   WebGLRenderer,
   AxesHelper,
-  Clock,
 } from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 // Canvas
-const canvas = document.querySelector('canvas.webgl')!
+const canvas = document.querySelector('canvas.webgl')
+
+if (!canvas) {
+  throw new Error('There is no canvas to be used.')
+}
 
 // Scene
 const scene = new Scene()

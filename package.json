@@ -12,14 +12,21 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "gts lint",
-    "clean": "gts clean",
-    "fix": "gts fix"
+    "lint": "npx eslint \"./src/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.ts\""
   },
   "devDependencies": {
     "@types/node": "18.0.0",
     "@types/three": "0.150.0",
-    "gts": "4.0.1",
+    "@typescript-eslint/eslint-plugin": "5.57.1",
+    "@typescript-eslint/parser": "5.57.1",
+    "eslint": "8.38.0",
+    "eslint-config-prettier": "8.8.0",
+    "eslint-config-standard-with-typescript": "34.0.1",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-n": "15.7.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-promise": "6.1.1",
     "typescript": "4.9.3",
     "vite": "4.2.1"
   },
