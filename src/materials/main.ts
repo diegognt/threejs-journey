@@ -25,12 +25,11 @@ import {
 } from 'three'
 import * as dat from 'lil-gui'
 
-
 // Debug UI
 const gui = new dat.GUI()
 
 const adjustGradientOnToonMaterial = (newValue: string) => {
-  if (newValue !== 'Toon') return;
+  if (newValue !== 'Toon') return
 
   textures.gradient.minFilter = NearestFilter
   textures.gradient.magFilter = NearestFilter
@@ -44,7 +43,11 @@ const textures = {
   gradient: textureLoader.load('/textures/gradients/5.jpg'),
 }
 
-const canvas = document.querySelector('canvas.webgl')! as HTMLElement
+const canvas = document.querySelector('canvas.webgl') as HTMLElement
+
+if (!canvas) {
+  throw new Error('There is no canvas to be used.')
+}
 
 // Scene
 const scene: Scene = new Scene()
@@ -71,7 +74,7 @@ const geometries = {
 const materials: { [key: string]: Material } = {
   Wireframe: new MeshBasicMaterial({
     color: 0xff0000,
-    wireframe: true
+    wireframe: true,
   }),
   Normal: new MeshNormalMaterial({
     flatShading: true,
@@ -82,15 +85,15 @@ const materials: { [key: string]: Material } = {
   Lambert: new MeshLambertMaterial(),
   Phonge: new MeshPhongMaterial({
     shininess: 90,
-    specular: new Color(0x1188ff)
+    specular: new Color(0x1188ff),
   }),
   Standard: new MeshStandardMaterial({
     metalness: 0.45,
     roughness: 0.65,
   }),
   Toon: new MeshToonMaterial({
-    gradientMap: textures.gradient
-  })
+    gradientMap: textures.gradient,
+  }),
 }
 
 // Objects
@@ -105,17 +108,20 @@ objects.tourus.position.x = 1.5
 
 scene.add(objects.sphere, objects.plane, objects.tourus)
 
-gui.addFolder('Sphere')
+gui
+  .addFolder('Sphere')
   .add(objects.sphere, 'material', materials)
   .setValue(materials.Wireframe)
   .onChange(adjustGradientOnToonMaterial)
 
-gui.addFolder('Plane')
+gui
+  .addFolder('Plane')
   .add(objects.plane, 'material', materials)
   .setValue(materials.Wireframe)
   .onChange(adjustGradientOnToonMaterial)
 
-gui.addFolder('Tourus')
+gui
+  .addFolder('Tourus')
   .add(objects.tourus, 'material', materials)
   .setValue(materials.Wireframe)
   .onChange(adjustGradientOnToonMaterial)
