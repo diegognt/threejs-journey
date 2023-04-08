@@ -1,14 +1,21 @@
+import '../style.css'
 
-import '../style.css';
-
-import { Scene, BoxGeometry, MeshBasicMaterial, Mesh, PerspectiveCamera, WebGLRenderer, AxesHelper } from 'three'
+import {
+  Scene,
+  BoxGeometry,
+  MeshBasicMaterial,
+  Mesh,
+  PerspectiveCamera,
+  WebGLRenderer,
+  AxesHelper,
+} from 'three'
 
 /**
  * Canvas Sizes
  */
 const sizes = {
   width: 800,
-  height: 600
+  height: 600,
 }
 
 const cursorPoint = {
@@ -16,8 +23,8 @@ const cursorPoint = {
   y: 0,
 }
 window.addEventListener('mousemove', (event: MouseEvent) => {
-  cursorPoint.x = - ((event.clientX / sizes.width) - 0.5)
-  cursorPoint.y = (event.clientY / sizes.height) - 0.5
+  cursorPoint.x = -(event.clientX / sizes.width - 0.5)
+  cursorPoint.y = event.clientY / sizes.height - 0.5
 })
 
 // Canvas
@@ -32,7 +39,6 @@ const cube = new Mesh(
   new MeshBasicMaterial({ color: 0xff0000 })
 )
 scene.add(cube)
-
 
 /**
  * Axes helper

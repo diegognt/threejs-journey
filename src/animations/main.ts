@@ -1,6 +1,15 @@
-import '../style.css';
+import '../style.css'
 
-import { Scene, BoxGeometry, MeshBasicMaterial, Mesh, PerspectiveCamera, WebGLRenderer, AxesHelper, Clock } from 'three'
+import {
+  Scene,
+  BoxGeometry,
+  MeshBasicMaterial,
+  Mesh,
+  PerspectiveCamera,
+  WebGLRenderer,
+  AxesHelper,
+  Clock,
+} from 'three'
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')!
@@ -20,7 +29,7 @@ scene.add(cube)
  */
 const sizes = {
   width: 800,
-  height: 600
+  height: 600,
 }
 
 /**
@@ -46,7 +55,6 @@ renderer.setSize(sizes.width, sizes.height)
 const clock = new Clock()
 
 const tick = () => {
-
   const ellapsedTime = clock.getElapsedTime()
 
   // Trnsform the object

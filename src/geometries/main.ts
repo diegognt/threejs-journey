@@ -1,7 +1,16 @@
-import '../style.css';
+import '../style.css'
 
-import { Scene, MeshBasicMaterial, Mesh, PerspectiveCamera, WebGLRenderer, AxesHelper, BufferAttribute, BufferGeometry } from 'three'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import {
+  Scene,
+  MeshBasicMaterial,
+  Mesh,
+  PerspectiveCamera,
+  WebGLRenderer,
+  AxesHelper,
+  BufferAttribute,
+  BufferGeometry,
+} from 'three'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')!
@@ -11,12 +20,12 @@ const scene = new Scene()
 
 // Object
 const numberOfVertex = 3
-const amountOfGeometries = 50 * numberOfVertex * numberOfVertex 
+const amountOfGeometries = 50 * numberOfVertex * numberOfVertex
 const geometry = new BufferGeometry()
 const positionsArray = new Float32Array(amountOfGeometries)
 
 for (let index = 0; index < amountOfGeometries; index++) {
-  positionsArray[index] = (Math.random() - 0.5)
+  positionsArray[index] = Math.random() - 0.5
 }
 
 const positionsAttribute = new BufferAttribute(positionsArray, numberOfVertex)
@@ -79,7 +88,6 @@ control.enableDamping = true
 const renderer = new WebGLRenderer({ canvas: canvas })
 renderer.setSize(sizes.width, sizes.height)
 
-
 const tick = () => {
   // Render the scene
   renderer.render(scene, camera)
@@ -88,4 +96,3 @@ const tick = () => {
 }
 
 tick()
-
