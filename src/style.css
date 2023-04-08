@@ -106,6 +106,10 @@ heading {
   top: 4.5rem;
 }
 
+.lil-gui.autoPlace {
+  top: 64px;
+  right: 0;
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

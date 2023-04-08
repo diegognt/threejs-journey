@@ -1,7 +1,16 @@
-import '../style.css';
+import '../style.css'
 
-import { Scene, BoxGeometry, MeshBasicMaterial, Mesh, PerspectiveCamera, WebGLRenderer, AxesHelper, Clock } from 'three'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import {
+  Scene,
+  BoxGeometry,
+  MeshBasicMaterial,
+  Mesh,
+  PerspectiveCamera,
+  WebGLRenderer,
+  AxesHelper,
+  Clock,
+} from 'three'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')!
@@ -73,11 +82,7 @@ control.enableDamping = true
 const renderer = new WebGLRenderer({ canvas: canvas })
 renderer.setSize(sizes.width, sizes.height)
 
-
 const tick = () => {
-
-
-
   // Render the scene
   renderer.render(scene, camera)
 
@@ -85,4 +90,3 @@ const tick = () => {
 }
 
 tick()
-
