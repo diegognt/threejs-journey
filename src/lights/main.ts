@@ -4,7 +4,6 @@ import {
   CameraHelper,
   Clock,
   DirectionalLight,
-  Light,
   Material,
   Mesh,
   MeshStandardMaterial,
@@ -17,10 +16,13 @@ import {
   SpotLight,
   WebGLRenderer,
 } from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import "../style.css";
 
 import GUI from "lil-gui";
+
+type LightName = "ambient" | "directional" | "spotlight" | "point";
+type LightType = AmbientLight | DirectionalLight | SpotLight | PointLight;
 
 const debugUI = new GUI();
 
@@ -71,7 +73,7 @@ for (const mesh in meshes) {
 }
 
 // Lights
-const lights: { [key: string]: Light } = {
+const lights: { ambient: AmbientLight, directional: DirectionalLight, spotlight: SpotLight, point: PointLight } = {
   ambient: new AmbientLight(0xffffff, 0.5),
   directional: new DirectionalLight(0xffffff, 0.5),
   spotlight: new SpotLight(0xffffff, 0.4, 10, Math.PI * 0.3),
@@ -108,10 +110,11 @@ lights.point.shadow.camera.near = 0.5;
 lights.point.shadow.camera.far = 5;
 
 for (const name in lights) {
-  scene.add(lights[name]);
+  const light: LightType = lights[name as LightName];
+  scene.add(light);
 
-  if ("target" in lights[name]) {
-    scene.add(lights[name].target);
+  if ("target" in light) {
+    scene.add(light.target);
   }
 }
 

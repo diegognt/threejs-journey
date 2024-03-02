@@ -1,7 +1,6 @@
 import {
   AmbientLight,
   BufferGeometry,
-  Clock,
   Material,
   Mesh,
   MeshBasicMaterial,
@@ -13,9 +12,9 @@ import {
   TorusGeometry,
   WebGLRenderer,
 } from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
-import { FontLoader } from "three/examples/jsm/loaders/FontLoader";
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
+import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
 import "../style.css";
 
 // Textures
@@ -127,12 +126,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 /**
  * Animate
  */
-const clock = new Clock();
 const tick = () => {
-  const elapsedTime = clock.getElapsedTime();
-
-  // Update Objects
-
   // Update controls
   controls.update();
 
