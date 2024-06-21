@@ -15,6 +15,7 @@ export default defineConfig({
         materials: resolve(__dirname, 'materials/index.html'),
         "3d-text": resolve(__dirname, '3d-text/index.html'),
         lights: resolve(__dirname, 'lights/index.html'),
+        "scroll-based-animation": resolve(__dirname, 'scroll-based-animation/index.html'),
       },
     },
   },
