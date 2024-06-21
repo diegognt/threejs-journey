@@ -19,13 +19,16 @@
     "format": "bunx @biomejs/biome format --write ./src"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.5.3",
-    "@types/three": "0.162.0",
-    "typescript": "5.3.3",
-    "vite": "5.1.4"
+    "@biomejs/biome": "1.8.2",
+    "@types/three": "0.165.0",
+    "typescript": "5.5.2",
+    "vite": "5.3.1"
   },
   "dependencies": {
-    "lil-gui": "0.17.0",
-    "three": "0.162.0"
-  }
+    "lil-gui": "0.19.2",
+    "three": "0.165.0"
+  },
+  "trustedDependencies": [
+    "@biomejs/biome"
+  ]
 }
