@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 :root {
   --winterRed: #43242B;
   --winterYellow: #49443C;
@@ -106,18 +112,73 @@ heading {
   top: 4.5rem;
 }
 
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 4.25rem;
+  justify-content: center;
+  padding: 3rem;
+  max-width: 1440px;
+  width: 90vw;
+}
+
+.section:nth-child(odd) {
+  align-items: flex-start;
+}
+
+.section:nth-child(even) {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.section h1 {
+  margin: 0;
+  line-height: 1;
+  font-size: 6.5rem;
+  width: fit-content;
+
+}
+
+.section h2 {
+  font-size: 5.5rem;
+  line-height: 1;
+  margin: 0;
+  width: 80vw;
+}
+
+.section p {
+  font-size: 2rem;
+  line-height: 1.25;
+  margin: 0;
+  width: 60vw;
+}
+
+.section--full-height {
+  height: 100dvh;
+}
+
+.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
 .lil-gui.autoPlace {
   top: 64px;
   right: 0;
 }
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover {
     color: #747bff;
   }
+
   button {
     background-color: #f9f9f9;
   }
