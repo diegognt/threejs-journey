@@ -1,5 +1,4 @@
-// vite.config.js
-import { resolve } from 'path'
+import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
@@ -16,6 +15,7 @@ export default defineConfig({
         "3d-text": resolve(__dirname, '3d-text/index.html'),
         lights: resolve(__dirname, 'lights/index.html'),
         "scroll-based-animation": resolve(__dirname, 'scroll-based-animation/index.html'),
+        "shader-plane": resolve(__dirname, 'shader-plane/index.html'),
       },
     },
   },
