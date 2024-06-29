@@ -16,6 +16,7 @@ export default defineConfig({
         lights: resolve(__dirname, 'lights/index.html'),
         "scroll-based-animation": resolve(__dirname, 'scroll-based-animation/index.html'),
         "shader-plane": resolve(__dirname, 'shader-plane/index.html'),
+        "shader-waves": resolve(__dirname, 'shader-waves/index.html'),
       },
     },
   },
