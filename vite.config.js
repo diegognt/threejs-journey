@@ -17,6 +17,7 @@ export default defineConfig({
         "scroll-based-animation": resolve(__dirname, 'scroll-based-animation/index.html'),
         "shader-plane": resolve(__dirname, 'shader-plane/index.html'),
         "shader-waves": resolve(__dirname, 'shader-waves/index.html'),
+        "psychedelic-pattern": resolve(__dirname, 'psychedelic-pattern/index.html'),
       },
     },
   },
