@@ -18,6 +18,7 @@ export default defineConfig({
         "shader-plane": resolve(__dirname, 'shader-plane/index.html'),
         "shader-waves": resolve(__dirname, 'shader-waves/index.html'),
         "psychedelic-pattern": resolve(__dirname, 'psychedelic-pattern/index.html'),
+        "animated-galaxy": resolve(__dirname, 'animated-galaxy/index.html'),
       },
     },
   },
