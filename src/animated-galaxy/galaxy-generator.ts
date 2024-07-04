@@ -1,4 +1,4 @@
-import type { Mesh, Camera, Material } from "three";
+import type { Material } from "three";
 import {
   BufferGeometry,
   AdditiveBlending,
@@ -6,17 +6,16 @@ import {
   Color,
   PerspectiveCamera,
   Points,
-  Scene,
   ShaderMaterial,
-  WebGLRenderer,
   Clock,
   AxesHelper,
 } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import vertexShader from "./shaders/vertex.glsl?raw";
 import fragmentShader from "./shaders/fragment.glsl?raw";
+import SceneHandler from "../abstracts/scene-handler";
 
-class GalaxyGenerator {
+class GalaxyGenerator extends SceneHandler {
   startCount: number;
   size: number;
   radius: number;
@@ -27,18 +26,14 @@ class GalaxyGenerator {
   insideColor: string;
   outsideColor: string;
   helper: AxesHelper;
-  #canvas!: HTMLElement;
-  #scene!: Scene;
-  #renderer!: WebGLRenderer;
-  #camera!: Camera;
   #control!: OrbitControls;
   #geometry!: BufferGeometry;
   #material!: Material;
-  #mesh!: Mesh;
   #points!: Points;
   #clock!: Clock;
 
-  constructor(canvas: HTMLElement) {
+  constructor(canvas: HTMLCanvasElement) {
+    super(canvas);
     this.startCount = 100000;
     this.size = 0.005;
     this.radius = 3; // length of a galaxy branch
@@ -48,16 +43,14 @@ class GalaxyGenerator {
     this.randomnessPower = 5; // constrols how many starts are close to the center
     this.insideColor = "#ff6030";
     this.outsideColor = "#1b3984";
-    this.canvas = canvas;
-    this.renderer = new WebGLRenderer({ canvas: this.canvas });
-    this.scene = new Scene();
+
     this.camera = new PerspectiveCamera(
       75,
       window.innerWidth / window.innerHeight,
       0.1,
       100,
     );
-    this.control = new OrbitControls(this.camera, this.canvas);
+    this.control = new OrbitControls(this.camera, this.canvasAsHTMLElement);
     this.geometry = this.#generateGeometry();
     this.material = this.#generateMaterial();
     this.points = new Points(this.geometry, this.material);
@@ -66,17 +59,13 @@ class GalaxyGenerator {
   }
 
   initialize() {
-    this.scene.add(this.camera);
-    this.scene.add(this.helper);
+    super.initialize();
+
+    this.addSceneObject(this.camera);
+    this.addSceneObject(this.helper);
+    this.addSceneObject(this.points);
 
     this.control.enableDamping = true;
-
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  }
-
-  setListeners() {
-    window.addEventListener("resize", this.windowResizeListener.bind(this));
   }
 
   tick() {
@@ -84,24 +73,21 @@ class GalaxyGenerator {
     (this.material as ShaderMaterial).uniforms.uTime.value = elapsedTime;
 
     this.control.update();
-    this.renderer.render(this.scene, this.camera);
 
-    // Call tick again on the next frame
-    window.requestAnimationFrame(this.tick.bind(this));
+    super.tick();
   }
 
-  draw() {
-    this.updateCameraPosition(3, 3, 3);
+  display() {
+    super.display();
 
-    this.scene.add(this.points);
+    this.updateCameraPosition(3, 3, 3);
   }
 
   windowResizeListener() {
+    super.windowResizeListener();
+
     this.updateCameraAspect(window.innerWidth / window.innerHeight);
     (this.camera as PerspectiveCamera).updateProjectionMatrix();
-
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   }
 
   updateCameraAspect(aspect: number) {
@@ -214,37 +200,6 @@ class GalaxyGenerator {
     return this.#control;
   }
 
-  set camera(camera: Camera) {
-    this.#camera = camera;
-  }
-
-  get camera() {
-    return this.#camera;
-  }
-  set scene(scene: Scene) {
-    this.#scene = scene;
-  }
-
-  get scene() {
-    return this.#scene;
-  }
-
-  set canvas(canvas: HTMLElement) {
-    this.#canvas = canvas;
-  }
-
-  get canvas() {
-    return this.#canvas;
-  }
-
-  get renderer() {
-    return this.#renderer;
-  }
-
-  set renderer(renderer: WebGLRenderer) {
-    this.#renderer = renderer;
-  }
-
   get geometry() {
     return this.#geometry;
   }
@@ -259,14 +214,6 @@ class GalaxyGenerator {
 
   set material(material: Material) {
     this.#material = material;
-  }
-
-  set mesh(mesh: Mesh) {
-    this.#mesh = mesh;
-  }
-
-  get mesh() {
-    return this.#mesh;
   }
 }
 

@@ -7,9 +7,8 @@ if (!canvas) {
   throw new Error("No canvas was found");
 }
 
-const galaxy = new GalaxyGenerator(canvas as HTMLElement);
+const galaxy = new GalaxyGenerator(canvas as HTMLCanvasElement);
 
 galaxy.initialize();
-galaxy.setListeners();
-galaxy.draw();
+galaxy.display();
 galaxy.tick();
