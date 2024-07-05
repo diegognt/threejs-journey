@@ -17,11 +17,16 @@ const options = {
   "Pattern 3": 3,
   "Pattern 4": 4,
   "Pattern 5": 5,
-  "Pattern 6": 6,
 };
 
 scene.initialize();
 scene.display();
 scene.tick();
 
-gui.add((scene.material as ShaderMaterial).uniforms.uPatternIndex, "value", options).name("Pattern Number");
+gui
+  .add(
+    (scene.material as ShaderMaterial).uniforms.uPatternIndex,
+    "value",
+    options,
+  )
+  .name("Pattern Number");
