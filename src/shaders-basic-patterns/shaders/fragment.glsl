@@ -1,8 +1,8 @@
-uniform  int uPatternIndex;
+uniform int uPatternIndex;
 varying vec2 vUV;
 
 vec3 patternOne(vec2 uv) {
-    return vec3(mod(uv.x * 10.0, 1.0));
+    return vec3(step(0.5, mod(uv.x * 10.0, 1.0)));
 }
 
 vec3 patternTwo(vec2 uv) {
@@ -30,19 +30,6 @@ vec3 patternFive(vec2 uv) {
     return vec3(barY + barX);
 }
 
-vec3 patternSix(vec2 uv) {
-  uv = uv - 0.5;
-
-  float circle = step(0.1, length(uv));
-
-  return vec3(circle);
-}
-
-vec3 patternTen(vec2 uv) {
-    float strength = max(abs(uv.x - 0.5), abs(uv.y - 0.5));
-    return vec3(strength);
-}
-
 vec3 callPattern(int index, vec2 uv) {
     switch (index) {
         case 1:
@@ -55,10 +42,6 @@ vec3 callPattern(int index, vec2 uv) {
         return patternFour(uv);
         case 5:
         return patternFive(uv);
-        case 6:
-        return patternSix(uv);
-        case 10:
-        return patternTen(uv);
         default:
         return vec3(1.0, 1.0, 1.0);
     }
